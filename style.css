@@ -1,0 +1,115 @@
+* {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: NoteThis;
+    src: url(assets/note_this.ttf);
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 0.03em;
+    font-size:18pt;
+}
+
+main {
+    padding:0 16px;
+}
+
+.r {
+    display:block;
+    margin:0 -16px;
+}
+.r:after {
+    content:"";
+    clear:both;
+    display:block;
+}
+.r > .c1, .r > .c2, .r > .c3, .r > .c4, .r > .c5, .r > .c6 {
+    display:block;
+    padding:0 16px;
+    float:left;
+}
+.c1 {
+    width:calc(100%/6);
+}
+.c2 {
+    width:33.333333333%;
+}
+.c3 {
+    width:50%;
+}
+.c4 {
+    width:66.6666666667%;
+}
+.c5 {
+    width:calc(500%/6);
+}
+.c6 {
+    width:100%;
+}
+
+
+label {
+    font-size:0.5em;
+    font-variant: small-caps;
+    padding:0 8px;
+    margin:4px 0 16px;
+    display:block;
+}
+label:last-child {
+    margin:4px 0 0;
+}
+
+input, select, textarea {
+    display:block;
+    width:100%;
+    padding:8px 16px;
+    margin:16px 0 0;
+    color:#2c2c2c;
+    font-weight: 900;
+    font-family: NoteThis, serif;
+    font-size:1.0em;
+    border:1px solid rgba(0,0,0,0.1);
+    background:rgba(0,0,0,0.05);
+    border-radius:8px;
+    outline:none;
+    resize: vertical;
+}
+
+input:focus, select:focus, textarea:focus {
+    background:rgba(0,0,0,0.1);
+}
+
+label input, label select, label textarea {
+    display:inline-block;
+    margin:0 8px;
+    width:unset;
+}
+
+.skillsave input[type="number"] {
+    width:4em;
+}
+
+
+#bar {
+    background:#00002c;
+    color:#fff;
+}
+#bar input, #bar select, #bar textarea {
+    background:#00002c;
+    color:#fff;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size:0.8em;
+    padding:2px;
+}
+
+
+@media print {
+    #bar {
+        display:none;
+    }
+}
