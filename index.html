@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>Character Sheet Online</title>
-        <link rel="stylesheet" href="style.css" type="text/css" />
+        <link rel="stylesheet" href="style.css" type="text/css"/>
     </head>
 
     <body>
@@ -11,11 +11,21 @@
             <ul id="tools" class="r">
                 <div class="c1">
                     <label>Pen Color</label>
-                    <select>
-                        <option value="#2c2c2c">Default</option>
-                        <option value="#0000cc">Blue</option>
-                        <option value="#cc0000">Red</option>
-                        <option value="#00cc00">Green</option>
+                    <select id="tool_pen_color">
+                        <option value="">Default</option>
+                        <option value="pc_blue">Blue</option>
+                        <option value="pc_red">Red</option>
+                        <option value="pc_green">Green</option>
+                    </select>
+                </div>
+                <div class="c1">
+                    <label>Writing Font</label>
+                    <select id="tool_writing_font">
+                        <option value="">Default</option>
+                        <option value="wf_mono">Monospace</option>
+                        <option value="wf_serif">Serif</option>
+                        <option value="wf_sans">Sans-Serif</option>
+
                     </select>
                 </div>
             </ul>
@@ -24,67 +34,287 @@
         <main>
 
             <form id="sheet">
-                <input type="hidden" name="uid" id="cid" />
+                <input type="hidden" name="uid" id="cid"/>
                 <div class="r">
                     <div class="c2">
-                        <div class="r">
-                            <div class="c6">
-                                <input type="text" name="character_name" />
-                                <label>Character Name</label>
-                            </div>
-                        </div>
-                        <div class="r">
-                            <div class="c6">
-                                <input type="text" name="player_name" />
-                                <label>Player Name</label>
-                            </div>
-                        </div>
+                        <input type="text" name="character_name"/>
+                        <label>Character Name</label>
+                        <input type="text" name="player_name"/>
+                        <label>Player Name</label>
+                        <label><input type="checkbox" name="inspiration" value="1"/>Inspiration</label>
                     </div>
                     <div class="c4">
-                        <div class="r">
-                            <div class="c2">
-                                <input type="text" name="class" />
-                                <label>Class</label>
+                        <div class="bg">
+                            <div class="r">
+                                <div class="c4">
+                                    <input type="text" name="class_level"/>
+                                    <label>Class & Level</label>
+                                </div>
+                                <div class="c2">
+                                    <input type="text" name="background"/>
+                                    <label>Background</label>
+                                </div>
                             </div>
-                            <div class="c1">
-                                <input type="number" name="level" min=1 max=20 step=1 value=1 />
-                                <label>Level</label>
-                            </div>
-                            <div class="c2">
-                                <input type="text" name="background" />
-                                <label>Background</label>
-                            </div>
-                            <div class="c1">
-                                <input type="checkbox" name="inspiration" />
-                                <label>Inspiration</label>
+                            <div class="r">
+                                <div class="c4">
+                                    <input type="text" name="race"/>
+                                    <label>Race</label>
+                                </div>
+                                <div class="c2">
+                                    <select name="alignment">
+                                        <option>Lawful Good</option>
+                                        <option>Neutral Good</option>
+                                        <option>Chaotic Good</option>
+                                        <option>Lawful Neutral</option>
+                                        <option>Neutral</option>
+                                        <option>Chaotic Neutral</option>
+                                        <option>Lawful Evil</option>
+                                        <option>Neutral Evil</option>
+                                        <option>Chaotic Evil</option>
+                                    </select>
+                                    <label>Alignment</label>
+                                </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <div class="r">
+                    <div class="c2">
+                        <h4>Status</h4>
+
+                        <div class="bg">
+                            <div class="r">
+                                <div class="c6">
+                                    <input type="number" name="hp" min="0"/>
+                                    <label>Current Hit Points</label>
+                                </div>
+                            </div>
+                            <div class="r">
+                                <div class="c3">
+                                    <input type="number" name="hp_max" min="1"/>
+                                    <label>Hit Point Maximum</label>
+                                </div>
+                                <div class="c3">
+                                    <input type="number" name="hp_temporary" min="0"/>
+                                    <label>Temporary Hit Points</label>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="r">
                             <div class="c2">
-                                <input type="text" name="race" />
-                                <label>Race</label>
-                            </div>
-                            <div class="c1">
-                                <select name="alignment">
-                                    <option>Lawful Good</option>
-                                    <option>Neutral Good</option>
-                                    <option>Chaotic Good</option>
-                                    <option>Lawful Neutral</option>
-                                    <option>Neutral</option>
-                                    <option>Chaotic Neutral</option>
-                                    <option>Lawful Evil</option>
-                                    <option>Neutral Evil</option>
-                                    <option>Chaotic Evil</option>
-                                </select>
-                                <label>Alignment</label>
+                                <div class="bg">
+                                    <input type="number" name="armor_class"/>
+                                    <label>Armor Class</label>
+                                </div>
                             </div>
                             <div class="c2">
-                                <input type="number" name="experience_points" value=0 min=0 />
-                                <label>Experience Points</label>
+                                <div class="bg">
+                                    <input type="number" name="initiative"/>
+                                    <label>Initiative</label>
+                                </div>
                             </div>
-                            <div class="c1">
-                                <input type="number" name="proficiency_bonus" value=2 min=2 max=6 step=1 />
-                                <label>Proficiency Bonus</label>
+                            <div class="c2">
+                                <div class="bg">
+                                    <input type="number" name="speed" min="0" step="5"/>
+                                    <label>Speed</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg">
+                            <div class="r">
+                                <div class="c3">
+                                    <input type="number" name="total_hit_dice" min="1"/>
+                                    <label>Total Hit Dice</label>
+                                </div>
+                                <div class="c3">
+                                    <input type="number" name="hit_dice" min="0"/>
+                                    <label>Current Hit Dice</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="r">
+                            <div class="c3">
+                                <div class="bg">
+                                    <div class="r">
+                                        <div class="c2">
+                                            <input type="checkbox" name="death_save_success_1"/>
+                                        </div>
+                                        <div class="c2">
+                                            <input type="checkbox" name="death_save_success_2"/>
+                                        </div>
+                                        <div class="c2">
+                                            <input type="checkbox" name="death_save_success_3"/>
+                                        </div>
+                                    </div>
+                                    <label>Death Save Successes</label>
+                                </div>
+                            </div>
+                            <div class="c3">
+                                <div class="bg">
+                                    <div class="r">
+                                        <div class="c2">
+                                            <input type="checkbox" name="death_save_fail_1"/>
+                                        </div>
+                                        <div class="c2">
+                                            <input type="checkbox" name="death_save_fail_2"/>
+                                        </div>
+                                        <div class="c2">
+                                            <input type="checkbox" name="death_save_fail_3"/>
+                                        </div>
+                                    </div>
+                                    <label>Death Save Failures</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="r">
+                            <div class="c3">
+                                <div class="bg">
+                                    <input type="text" name="experience_points" />
+                                    <label>Experience Points</label>
+                                </div>
+                            </div>
+                            <div class="c3">
+                                <div class="bg">
+                                    <input type="text" name="proficiency_bonus" />
+                                    <label>Proficiency Bonus</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="c4">
+                        <h4>Attacks and Spellcasting</h4>
+                        <div class="bg">
+                            <div class="r">
+                                <div class="c3">
+                                    <textarea name="attacks_spellcasting" rows="16"></textarea>
+                                </div>
+                                <div class="c3">
+                                    <textarea name="attacks_spellcasting_2" rows="16"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h4>Ability Scores</h4>
+                <div class="r tc" id="ability_scores">
+                    <div class="c1">
+                        <div class="bg">
+                            <div class="r">
+                                <div class="c6">
+                                    <strong>Strength</strong>
+                                </div>
+                            </div>
+                            <div class="r">
+                                <div class="c3">
+                                    <input type="text" name="str"/>
+                                    <label>Modifier</label>
+                                </div>
+                                <div class="c3">
+                                    <input type="text" name="strength" min="0" value="8"/>
+                                    <label>Score</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="c1">
+                        <div class="bg">
+                            <div class="r">
+                                <div class="c6">
+                                    <strong>Dexterity</strong>
+                                </div>
+                            </div>
+                            <div class="r">
+                                <div class="c3">
+                                    <input type="text" name="dex"/>
+                                    <label>Modifier</label>
+                                </div>
+                                <div class="c3">
+                                    <input type="text" name="dexterity" value="8"/>
+                                    <label>Score</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="c1">
+                        <div class="bg">
+                            <div class="r">
+                                <div class="c6">
+                                    <strong>Constitution</strong>
+                                </div>
+                            </div>
+                            <div class="r">
+                                <div class="c3">
+                                    <input type="text" name="con"/>
+                                    <label>Modifier</label>
+                                </div>
+                                <div class="c3">
+                                    <input type="text" name="constitution" value="8"/>
+                                    <label>Score</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="c1">
+                        <div class="bg">
+                            <div class="r">
+                                <div class="c6">
+                                    <strong>Intelligence</strong>
+                                </div>
+                            </div>
+                            <div class="r">
+                                <div class="c3">
+                                    <input type="text" name="int"/>
+                                    <label>Modifier</label>
+                                </div>
+                                <div class="c3">
+                                    <input type="text" name="intelligence" value="8"/>
+                                    <label>Score</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="c1">
+                        <div class="bg">
+                            <div class="r">
+                                <div class="c6">
+                                    <strong>Wisdom</strong>
+                                </div>
+                            </div>
+                            <div class="r">
+                                <div class="c3">
+                                    <input type="text" name="wis"/>
+                                    <label>Modifier</label>
+                                </div>
+                                <div class="c3">
+                                    <input type="text" name="wisdom" value="8"/>
+                                    <label>Score</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="c1">
+                        <div class="bg">
+                            <div class="r">
+                                <div class="c6">
+                                    <strong>Charisma</strong>
+                                </div>
+                            </div>
+                            <div class="r">
+                                <div class="c3">
+                                    <input type="text" name="cha"/>
+                                    <label>Modifier</label>
+                                </div>
+                                <div class="c3">
+                                    <input type="text" name="charisma" value="8"/>
+                                    <label>Score</label>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -92,357 +322,515 @@
 
                 <div class="r">
                     <div class="c1">
-                        <input type="number" name="str" />
-                        <label>Strength Modifier</label>
-                        <input type="number" name="strength" min=0 value=8 />
-                        <label>Strength Score</label>
+                        <h4>Saves</h4>
                     </div>
-                    <div class="c1">
-                        <input type="number" name="dex" />
-                        <label>Dexterity Modifier</label>
-                        <input type="number" name="dexterity" value=8 />
-                        <label>Dexterity Score</label>
-                    </div>
-                    <div class="c1">
-                        <input type="number" name="con" />
-                        <label>Constitution Modifier</label>
-                        <input type="number" name="constitution" value=8 />
-                        <label>Constitution Score</label>
-                    </div>
-                    <div class="c1">
-                        <input type="number" name="int" />
-                        <label>Intelligence Modifier</label>
-                        <input type="number" name="intelligence" value=8 />
-                        <label>Intelligence Score</label>
-                    </div>
-                    <div class="c1">
-                        <input type="number" name="wis" />
-                        <label>Wisdom Modifier</label>
-                        <input type="number" name="wisdom" value=8 />
-                        <label>Wisdom Score</label>
-                    </div>
-                    <div class="c1">
-                        <input type="number" name="cha" />
-                        <label>Charisma Modifier</label>
-                        <input type="number" name="charisma" value=8 />
-                        <label>Charisma Score</label>
+                    <div class="c5">
+                        <h4>Skills</h4>
                     </div>
                 </div>
+                <div class="r">
+                    <div class="c1">
+                        <label class="skillsave">
+                            <input type="checkbox" name="save_proficiency_str"/>
+                            <input type="text" name="save_str" maxlength="3"/>
+                            Strength
+                        </label>
+                        <label class="skillsave">
+                            <input type="checkbox" name="save_proficiency_dex"/>
+                            <input type="text" name="save_dex" maxlength="3"/>
+                            Dexterity
+                        </label>
+                        <label class="skillsave">
+                            <input type="checkbox" name="save_proficiency_con"/>
+                            <input type="text" name="save_con" maxlength="3"/>
+                            Constitution
+                        </label>
+                        <label class="skillsave">
+                            <input type="checkbox" name="save_proficiency_int"/>
+                            <input type="text" name="save_int" maxlength="3"/>
+                            Intelligence
+                        </label>
+                        <label class="skillsave">
+                            <input type="checkbox" name="save_proficiency_wis"/>
+                            <input type="text" name="save_wis" maxlength="3"/>
+                            Wisdom
+                        </label>
+                        <label class="skillsave">
+                            <input type="checkbox" name="save_proficiency_cha"/>
+                            <input type="text" name="save_cha" maxlength="3"/>
+                            Charisma
+                        </label>
+                    </div>
+                    <div class="c1">
+                        <em>Strength</em>
+                        <label class="skillsave">
+                            <input type="checkbox" name="skill_proficiency_athletics"/>
+                            <input type="text" name="skill_athletics" maxlength="3"/>
+                            Athletics
+                        </label>
+                    </div>
+                    <div class="c1">
+                        <em>Dexterity</em>
+                        <label class="skillsave">
+                            <input type="checkbox" name="skill_proficiency_acrobatics"/>
+                            <input type="text" name="skill_acrobatics" maxlength="3"/>
+                            Acrobatics
+                        </label>
+                        <label class="skillsave">
+                            <input type="checkbox" name="skill_proficiency_slight_of_hand"/>
+                            <input type="text" name="skill_slight_of_hand" maxlength="3"/>
+                            Slight of Hand
+                        </label>
+                        <label class="skillsave">
+                            <input type="checkbox" name="skill_proficiency_stealth"/>
+                            <input type="text" name="skill_stealth" maxlength="3"/>
+                            Stealth
+                        </label>
+                    </div>
+                    <div class="c1">
+                        <em>Intelligence</em>
+                        <label class="skillsave">
+                            <input type="checkbox" name="skill_proficiency_arcana"/>
+                            <input type="text" name="skill_arcana" maxlength="3"/>
+                            Arcana
+                        </label>
+                        <label class="skillsave">
+                            <input type="checkbox" name="skill_proficiency_history"/>
+                            <input type="text" name="skill_history" maxlength="3"/>
+                            History
+                        </label>
+                        <label class="skillsave">
+                            <input type="checkbox" name="skill_proficiency_investigation"/>
+                            <input type="text" name="skill_investigation" maxlength="3"/>
+                            Investigation
+                        </label>
+                        <label class="skillsave">
+                            <input type="checkbox" name="skill_proficiency_nature"/>
+                            <input type="text" name="skill_nature" maxlength="3"/>
+                            Nature
+                        </label>
+                        <label class="skillsave">
+                            <input type="checkbox" name="skill_proficiency_religion"/>
+                            <input type="text" name="skill_religion" maxlength="3"/>
+                            Religion
+                        </label>
+                    </div>
+                    <div class="c1">
+                        <em>Wisdom</em>
+                        <label class="skillsave">
+                            <input type="checkbox" name="skill_proficiency_animal_handling"/>
+                            <input type="text" name="skill_animal_handling" maxlength="3"/>
+                            Animal Handling
+                        </label>
+                        <label class="skillsave">
+                            <input type="checkbox" name="skill_proficiency_insight"/>
+                            <input type="text" name="skill_insight" maxlength="3"/>
+                            Insight
+                        </label>
+                        <label class="skillsave">
+                            <input type="checkbox" name="skill_proficiency_medicine"/>
+                            <input type="text" name="skill_medicine" maxlength="3"/>
+                            Medicine
+                        </label>
+                        <label class="skillsave">
+                            <input type="checkbox" name="skill_proficiency_perception"/>
+                            <input type="text" name="skill_perception" maxlength="3"/>
+                            Perception
+                        </label>
+                        <label class="skillsave">
+                            <input type="checkbox" name="skill_proficiency_survival"/>
+                            <input type="text" name="skill_survival" maxlength="3"/>
+                            Survival
+                        </label>
+                    </div>
+                    <div class="c1">
+                        <em>Charisma</em>
+                        <label class="skillsave">
+                            <input type="checkbox" name="skill_proficiency_deception"/>
+                            <input type="text" name="skill_deception" maxlength="3"/>
+                            Deception
+                        </label>
+                        <label class="skillsave">
+                            <input type="checkbox" name="skill_proficiency_intimidation"/>
+                            <input type="text" name="skill_intimidation" maxlength="3"/>
+                            Intimidation
+                        </label>
+                        <label class="skillsave">
+                            <input type="checkbox" name="skill_proficiency_performance"/>
+                            <input type="text" name="skill_performance" maxlength="3"/>
+                            Performance
+                        </label>
+                        <label class="skillsave">
+                            <input type="checkbox" name="skill_proficiency_persuasion"/>
+                            <input type="text" name="skill_persuasion" maxlength="3"/>
+                            Persuasion
+                        </label>
+                    </div>
+                </div>
+            </div>
 
-        
+            <div class="printbreak"></div>
+
+            <h4>Features & Traits</h4>
+            <div class="bg">
                 <div class="r">
                     <div class="c2">
-                        <div class="r">
-                            <div class="c6">
-                                <div class="r">
-                                    <div class="c2">
-                                        <input type="number" name="str" />
-                                        <label>Strength Modifier</label>
-                                        <input type="number" name="strength" min=0 value=8 />
-                                        <label>Strength Score</label>
-                                    </div>
-                                    <div class="c4">
-                                        <label class="skillsave">
-                                            <input type="radio" name="save_proficiency_str" />
-                                            <input type="number" name="save_str" />
-                                            Saving Throw
-                                        </label>
-                                        <label class="skillsave">
-                                            <input type="radio" name="skill_proficiency_athletics" />
-                                            <input type="number" name="skill_athletics" />
-                                            Athletics
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="c6">
-                                <div class="r">
-                                    <div class="c2">
-                                        <input type="number" name="dex" />
-                                        <label>Dexterity Modifier</label>
-                                        <input type="number" name="dexterity" value=8 />
-                                        <label>Dexterity Score</label>
-                                    </div>
-                                    <div class="c4">
-                                        <div class="r">
-                                            <div class="c6">
-                                                <input type="radio" name="save_proficiency_dex" />
-                                                <input type="number" name="save_dex" />
-                                                <label>Saving Throw</label>
-                                            </div>
-                                            <div class="c6">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="c6">
-                                <div class="r">
-                                    <div class="c2">
-                                        <input type="number" name="con" />
-                                        <label>Constitution Modifier</label>
-                                        <input type="number" name="constitution" value=8 />
-                                        <label>Constitution Score</label>
-                                    </div>
-                                    <div class="c4">
-                                        <div class="r">
-                                            <div class="c6">
-                                                <input type="radio" name="save_proficiency_con" />
-                                                <input type="number" name="save_con" />
-                                                <label>Saving Throw</label>
-                                            </div>
-                                            <div class="c6">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="c6">
-                                <div class="r">
-                                    <div class="c2">
-                                        <input type="number" name="int" />
-                                        <label>Intelligence Modifier</label>
-                                        <input type="number" name="intelligence" value=8 />
-                                        <label>Intelligence Score</label>
-                                    </div>
-                                    <div class="c4">
-                                        <div class="r">
-                                            <div class="c6">
-                                                <input type="radio" name="save_proficiency_int" />
-                                                <input type="number" name="save_int" />
-                                                <label>Saving Throw</label>
-                                            </div>
-                                            <div class="c6">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="c6">
-                                <div class="r">
-                                    <div class="c2">
-                                        <input type="number" name="wis" />
-                                        <label>Wisdom Modifier</label>
-                                        <input type="number" name="wisdom" value=8 />
-                                        <label>Wisdom Score</label>
-                                    </div>
-                                    <div class="c4">
-                                        <div class="r">
-                                            <div class="c6">
-                                                <input type="radio" name="save_proficiency_wis" />
-                                                <input type="number" name="save_wis" />
-                                                <label>Saving Throw</label>
-                                            </div>
-                                            <div class="c6">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="c6">
-                                <div class="r">
-                                    <div class="c2">
-                                        <input type="number" name="cha" />
-                                        <label>Charisma Modifier</label>
-                                        <input type="number" name="charisma" value=8 />
-                                        <label>Charisma Score</label>
-                                    </div>
-                                    <div class="c4">
-                                        <div class="r">
-                                            <div class="c6">
-                                                <input type="radio" name="save_proficiency_cha" />
-                                                <input type="number" name="save_cha" />
-                                                <label>Saving Throw</label>
-                                            </div>
-                                            <div class="c6">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <textarea name="features_traits" rows="12"></textarea>
                     </div>
                     <div class="c2">
-                        <div class="r">
-                            <div class="c2"><input type="number" name="armor_class" />
-                                <label>Armor Class</label></div>
-                            <div class="c2"><input type="number" name="initiative" />
-                                <label>Initiative</label></div>
-                            <div class="c2"><input type="number" name="speed" min=0 step=5 />
-                                <label>Speed</label></div>
-                        </div>           
-                
-                        <div class="r">
-                            <div class="c2">
-                                <input type="number" name="hp_max" min=1 />
-                                <label>Hit Point Maximum</label>
-                            </div>
-                            <div class="c2">
-                                <input type="number" name="hp" min=0 />
-                                <label>Current Hit Points</label>
-                            </div>
-                            <div class="c2">
-                                <input type="number" name="hp_temporary" min=0 />
-                                <label>Temporary Hit Points</label>
-                            </div>
-                        </div>
-
-                        <div class="r">
-                            <div class="c3">
-                                <input type="number" name="total_hit_dice" min=1 />
-                                <label>Total Hit Dice</label>
-                    
-                                <input type="number" name="hit_dice" min=0 />
-                                <label>Current Hit Dice</label>
-                            </div>
-                            <div class="c3">
-                                <div class="r">
-                                    <div class="c2">
-                                        <input type="checkbox" name="death_save_success[]" />
-                                    </div>
-                                    <div class="c2">
-                                        <input type="checkbox" name="death_save_success[]" />
-                                    </div>
-                                    <div class="c2">
-                                        <input type="checkbox" name="death_save_success[]" />
-                                    </div>
-                                </div>
-                                <label>Death Save Successes</label>
-                                <div class="r">
-                                    <div class="c2">
-                                        <input type="checkbox" name="death_save_fail[]" />
-                                    </div>
-                                    <div class="c2">
-                                        <input type="checkbox" name="death_save_fail[]" />
-                                    </div>
-                                    <div class="c2">
-                                        <input type="checkbox" name="death_save_fail[]" />
-                                    </div>
-                                </div>
-                                <label>Death Save Failures</label>
-                            </div>
-                        </div>
-                        
-                        <div class="r">
-                            <div class="c6">
-                                <textarea name="attacks_spellcasting" rows="8"></textarea>
-                                <label>Attacks and Spellcasting</label>
-                            </div>
-                        </div>
+                        <textarea name="features_traits_2" rows="12"></textarea>
                     </div>
                     <div class="c2">
-                        <div class="r">
-                            <div class="c6">
-                                <textarea name="features_traits" rows="16"></textarea>
-                                <label>Features & Traits</label>
-                            </div>
-                        </div>
+                        <textarea name="features_traits_3" rows="12"></textarea>
                     </div>
                 </div>
+            </div>
+
+            <h4>Proficiencies</h4>
+            <div class="bg">
                 <div class="r">
                     <div class="c2">
                         <textarea name="armor_proficiencies"></textarea>
-                        <label>Armor Proficiencies</label>
+                        <label>Armor</label>
                         <textarea name="weapon_proficiencies"></textarea>
-                        <label>Weapon Proficiencies</label>
+                        <label>Weapons</label>
+                    </div>
+                    <div class="c2">
                         <textarea name="tool_proficiencies"></textarea>
-                        <label>Tool Proficiencies</label>
-                        <textarea name="other_proficiencies"></textarea>
-                        <label>Other Proficiencies</label>
+                        <label>Tools</label>
                         <textarea name="languages"></textarea>
                         <label>Languages</label>
                     </div>
+                    <div class="c2">
+                        <textarea name="other_proficiencies" rows="6"></textarea>
+                        <label>Other</label>
+                    </div>
                 </div>
+            </div>
 
-                <div class="r">
-                    <div class="c4">
-                        <textarea name="equipment" rows="8"></textarea>
+            <h4>Inventory</h4>
+            <div class="r">
+                <div class="c4">
+                    <div class="bg">
+                        <div class="r">
+                            <div class="c3">
+                                <textarea name="equipment" rows="8"></textarea>
+                            </div>
+                            <div class="c3">
+                                <textarea name="equipment_2" rows="8"></textarea>
+                            </div>
+                        </div>
                         <label>Equipment</label>
                     </div>
-                    <div class="c2">
+                </div>
+                <div class="c2">
+                    <div class="bg">
                         <textarea name="currency" rows="8"></textarea>
                         <label>Currency</label>
                     </div>
                 </div>
+            </div>
 
-                <div class="r"></div>
-                    <div class="c6">
+            <div class="bg">
+                <div class="r">
+                    <div class="c2">
                         <textarea name="treasure" rows="8"></textarea>
                         <label>Treasure</label>
                     </div>
-                </div>
-
-                <div class="r">
-                    <div class="c3">
-                        <textarea name="traits" rows="6"></textarea>
-                        <label>Personality Traits</label>
-                    </div>
-                    <div class="c3">
-                        <textarea name="ideals" rows="6"></textarea>
-                        <label>Ideals</label>
-                    </div>
-                    <div class="c3">
-                        <textarea name="bonds" rows="6"></textarea>
-                        <label>Bonds</label>
-                    </div>
-                    <div class="c3">
-                        <textarea name="flaws" rows="6"></textarea>
-                        <label>Flaws</label>
-                    </div>
-                </div>
-
-                <div class="r">
                     <div class="c2">
-                        <textarea name="appearance_text" rows="8"></textarea>
-                        <label>Character Appearance</label>
+                        <textarea name="treasure_2" rows="8"></textarea>
                     </div>
-                    <div class="c4">
-                        <div class="r">
-                            <div class="c2">
-                                <input type="text" name="age" />
-                                <label>Age</label>
-                            </div>
-                            <div class="c2">
-                                <input type="text" name="height" />
-                                <label>Height</label>
-                            </div>
-                            <div class="c2">
-                                <input type="text" name="weight" />
-                                <label>Weight</label>
-                            </div>
-                        </div>
-                        <div class="r">
-                            <div class="c2">
-                                <input type="number" name="eyes" />
-                                <label>Eyes</label>
-                            </div>
-                            <div class="c2">
-                                <input type="number" name="skin" />
-                                <label>Skin</label>
-                            </div>
-                            <div class="c2">
-                                <input type="number" name="hair" />
-                                <label>Hair</label>
-                            </div>
-                        </div>
+                    <div class="c2">
+                        <textarea name="treasure_3" rows="8"></textarea>
                     </div>
                 </div>
+            </div>
+        </div>
 
+        <div class="printbreak"></div>
+
+        <h4>Spells</h4>
+        <div class="r">
+            <div class="c2">
+                <div class="bg">
+                    <strong>Cantrips</strong>
+                    <textarea name="spells_0" rows="12"></textarea>
+                    <label>Known / Prepared</label>
+                </div>
+            </div>
+            <div class="c2">
+                <div class="bg">
+                    <strong>Level 1</strong>
+                    <div class="r">
+                        <div class="c3">
+                            <input type="text" name="spell_slots_1" />
+                            <label>Available</label>
+                        </div>
+                        <div class="c3">
+                            <input type="text" name="spell_slots_1_used" />
+                            <label>Expended</label>
+                        </div>
+                    </div>
+                    <textarea name="spells_1" rows="10"></textarea>
+                    <label>Known / Prepared</label>
+                </div>
+            </div>
+            <div class="c2">
+                <div class="bg">
+                    <strong>Level 2</strong>
+                    <div class="r">
+                        <div class="c3">
+                            <input type="text" name="spell_slots_2" />
+                            <label>Available</label>
+                        </div>
+                        <div class="c3">
+                            <input type="text" name="spell_slots_2_used" />
+                            <label>Expended</label>
+                        </div>
+                    </div>
+                    <textarea name="spells_2" rows="10"></textarea>
+                    <label>Known / Prepared</label>
+                </div>
+            </div>
+        </div>
+        <div class="r">
+            <div class="c2">
+                <div class="bg">
+                    <strong>Level 3</strong>
+                    <div class="r">
+                        <div class="c3">
+                            <input type="text" name="spell_slots_3" />
+                            <label>Available</label>
+                        </div>
+                        <div class="c3">
+                            <input type="text" name="spell_slots_3_used" />
+                            <label>Expended</label>
+                        </div>
+                    </div>
+                    <textarea name="spells_3" rows="10"></textarea>
+                    <label>Known / Prepared</label>
+                </div>
+            </div>
+            <div class="c2">
+                <div class="bg">
+                    <strong>Level 4</strong>
+                    <div class="r">
+                        <div class="c3">
+                            <input type="text" name="spell_slots_4" />
+                            <label>Available</label>
+                        </div>
+                        <div class="c3">
+                            <input type="text" name="spell_slots_4_used" />
+                            <label>Expended</label>
+                        </div>
+                    </div>
+                    <textarea name="spells_4" rows="10"></textarea>
+                    <label>Known / Prepared</label>
+                </div>
+            </div>
+            <div class="c2">
+                <div class="bg">
+                    <strong>Level 5</strong>
+                    <div class="r">
+                        <div class="c3">
+                            <input type="text" name="spell_slots_5" />
+                            <label>Available</label>
+                        </div>
+                        <div class="c3">
+                            <input type="text" name="spell_slots_5_used" />
+                            <label>Expended</label>
+                        </div>
+                    </div>
+                    <textarea name="spells_5" rows="10"></textarea>
+                    <label>Known / Prepared</label>
+                </div>
+            </div>
+        </div>
+        <div class="r">
+            <div class="c3">
                 <div class="r">
-                    <div class="c6">
-                        <textarea name="additional_features_traits" rows="8"></textarea>
-                        <label>Additional Features & Traits</label>
-                        <textarea name="character_backstory" rows="16"></textarea>
-                        <label>Character Backstory</label>
-                        <textarea name="allies_organizations" rows="8"></textarea>
-                        <label>Allies & Organizations</label>
+                    <div class="c3">
+                        <div class="bg">
+                            <strong>Level 6</strong>
+                            <div class="r">
+                                <div class="c3">
+                                    <input type="text" name="spell_slots_3" />
+                                    <label>Available</label>
+                                </div>
+                                <div class="c3">
+                                    <input type="text" name="spell_slots_3_used" />
+                                    <label>Expended</label>
+                                </div>
+                            </div>
+                            <textarea name="spells_3" rows="8"></textarea>
+                            <label>Known / Prepared</label>
+                        </div>
+                    </div>
+                    <div class="c3">
+                        <div class="bg">
+                            <strong>Level 7</strong>
+                            <div class="r">
+                                <div class="c3">
+                                    <input type="text" name="spell_slots_7" />
+                                    <label>Available</label>
+                                </div>
+                                <div class="c3">
+                                    <input type="text" name="spell_slots_7_used" />
+                                    <label>Expended</label>
+                                </div>
+                            </div>
+                            <textarea name="spells_7" rows="8"></textarea>
+                            <label>Known / Prepared</label>
+                        </div>
                     </div>
                 </div>
+            </div>
+            <div class="c3">
+                <div class="r">
+                    <div class="c3">
+                        <div class="bg">
+                            <strong>Level 8</strong>
+                            <div class="r">
+                                <div class="c3">
+                                    <input type="text" name="spell_slots_8" />
+                                    <label>Available</label>
+                                </div>
+                                <div class="c3">
+                                    <input type="text" name="spell_slots_8_used" />
+                                    <label>Expended</label>
+                                </div>
+                            </div>
+                            <textarea name="spells_8" rows="8"></textarea>
+                            <label>Known / Prepared</label>
+                        </div>
+                    </div>
+                    <div class="c3">
+                        <div class="bg">
+                            <strong>Level 9</strong>
+                            <div class="r">
+                                <div class="c3">
+                                    <input type="text" name="spell_slots_9" />
+                                    <label>Available</label>
+                                </div>
+                                <div class="c3">
+                                    <input type="text" name="spell_slots_9_used" />
+                                    <label>Expended</label>
+                                </div>
+                            </div>
+                            <textarea name="spells_9" rows="8"></textarea>
+                            <label>Known / Prepared</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-            </form>
-        </main>
-        <footer>
-            <script src="sheet.js" type="text/javascript"></script>
-        </footer>
-    </body>
+        <div class="printbreak"></div>
+
+        <h4>Personality & Appearance</h4>
+        <div class="r">
+            <div class="c3">
+                <div class="bg">
+                    <textarea name="traits" rows="6"></textarea>
+                    <label>Personality Traits</label>
+                </div>
+            </div>
+            <div class="c3">
+                <div class="bg">
+                    <textarea name="ideals" rows="6"></textarea>
+                    <label>Ideals</label>
+                </div>
+            </div>
+        </div>
+        <div class="r">
+            <div class="c3">
+                <div class="bg">
+                    <textarea name="bonds" rows="6"></textarea>
+                    <label>Bonds</label>
+                </div>
+            </div>
+            <div class="c3">
+                <div class="bg">
+                    <textarea name="flaws" rows="6"></textarea>
+                    <label>Flaws</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="r">
+            <div class="c3">
+                <div class="bg">
+                    <textarea name="appearance_text" rows="8"></textarea>
+                    <label>Character Appearance</label>
+                </div>
+            </div>
+            <div class="c3">
+                <div class="bg">
+                    <div class="r">
+                        <div class="c2">
+                            <input type="text" name="age"/>
+                            <label>Age</label>
+                        </div>
+                        <div class="c2">
+                            <input type="text" name="height"/>
+                            <label>Height</label>
+                        </div>
+                        <div class="c2">
+                            <input type="text" name="weight"/>
+                            <label>Weight</label>
+                        </div>
+                    </div>
+                    <div class="r">
+                        <div class="c2">
+                            <input type="text" name="eyes"/>
+                            <label>Eyes</label>
+                        </div>
+                        <div class="c2">
+                            <input type="text" name="skin"/>
+                            <label>Skin</label>
+                        </div>
+                        <div class="c2">
+                            <input type="text" name="hair"/>
+                            <label>Hair</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="r">
+            <div class="c6">
+                <div class="bg">
+                    <textarea name="additional_features_traits" rows="8" class="rsa"></textarea>
+                    <label>Additional Features & Traits</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="printbreak"></div>
+
+        <h4>Character Backstory</h4>
+        <div class="r">
+            <div class="c6">
+                <div class="bg">
+                    <textarea name="character_backstory" rows="16" class="rsa"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <h4>Allies & Organizations</h4>
+        <div class="r">
+            <div class="c6">
+                <div class="bg">
+                    <textarea name="allies_organizations" rows="8" class="rsa"></textarea>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</main>
+<footer>
+    <script src="sheet.js" type="text/javascript"></script>
+</footer>
+</body>
 </html>

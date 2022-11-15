@@ -12,16 +12,19 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     letter-spacing: 0.03em;
-    font-size:18pt;
 }
 
 main {
-    padding:0 16px;
+    padding:0 8px;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    margin:16px 0 8px;
 }
 
 .r {
     display:block;
-    margin:0 -16px;
+    margin:8px -8px;
 }
 .r:after {
     content:"";
@@ -30,7 +33,7 @@ main {
 }
 .r > .c1, .r > .c2, .r > .c3, .r > .c4, .r > .c5, .r > .c6 {
     display:block;
-    padding:0 16px;
+    padding:0 8px;
     float:left;
 }
 .c1 {
@@ -54,9 +57,8 @@ main {
 
 
 label {
-    font-size:0.5em;
-    font-variant: small-caps;
-    padding:0 8px;
+    font-size:0.7em;
+    text-transform: uppercase;
     margin:4px 0 16px;
     display:block;
 }
@@ -68,16 +70,58 @@ input, select, textarea {
     display:block;
     width:100%;
     padding:8px 16px;
-    margin:16px 0 0;
-    color:#2c2c2c;
+    color:#4c4c4c;
     font-weight: 900;
     font-family: NoteThis, serif;
     font-size:1.0em;
-    border:1px solid rgba(0,0,0,0.1);
-    background:rgba(0,0,0,0.05);
-    border-radius:8px;
+    border:0;
+    background:transparent;
     outline:none;
-    resize: vertical;
+    resize: none;
+}
+
+input,select {
+    border-bottom:1px solid #2c2c2c;
+}
+
+.pc_blue input, .pc_blue select, .pc_blue textarea {
+    color: #00006c;
+}
+.pc_green input, .pc_green select, .pc_green textarea {
+    color: #006c00;
+}
+.pc_red input, .pc_red select, .pc_red textarea {
+    color: #6c0000;
+}
+
+.wf_mono input, .wf_mono select, .wf_mono textarea {
+    font-family:'Courier New', Courier, monospace;
+}
+.wf_serif input, .wf_serif select, .wf_serif textarea {
+    font-family: 'Times New Roman', Times, serif;
+}
+.wf_sans input, .wf_sans select, .wf_sans textarea {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+
+
+.bg {
+    border:1px solid #2c2c2c;
+    /* background:rgba(0,0,0,0.05); */
+    border-radius:4px;
+    padding:8px;
+}
+.bg > .r {
+    margin:0 -8px;
+}
+
+textarea.rsa {
+    resize: vertical !important;
+}
+
+input:hover, select:hover, textarea:hover {
+    background:rgba(0,0,0,0.05);
 }
 
 input:focus, select:focus, textarea:focus {
@@ -90,8 +134,19 @@ label input, label select, label textarea {
     width:unset;
 }
 
-.skillsave input[type="number"] {
-    width:4em;
+input[type="number"] {
+    text-align: center;
+}
+
+.skillsave input[type="text"] {
+    padding:4px;
+    font-size: 1.0em;
+    width:3em;
+}
+.skillsave input {
+    margin:0 0 4px 0;
+    display:inline;
+    vertical-align: middle;
 }
 
 
@@ -107,9 +162,53 @@ label input, label select, label textarea {
     padding:2px;
 }
 
+#tools {
+    margin:0 0 16px;
+}
+
+.tc {
+    text-align: center;
+}
+.tr {
+    text-align: right;
+}
+
+
+#ability_scores input {
+    text-align: center;
+}
+#ability_scores strong {
+    margin:4px 0;
+    font-size:.8em;
+}
 
 @media print {
+    .printbreak {
+        page-break-before: always;
+    }
     #bar {
         display:none;
+    }
+    label {
+        font-size: .5em;
+    }
+    input, select, textarea {
+        padding:2px;
+    }
+    textarea {
+        resize: none;
+    }
+    select {
+        appearance: none;
+    }
+
+    main {
+        padding:0;
+    }
+    .r {
+        margin:6px -4px;
+    }
+    .r > .c1, .r > .c2, .r > .c3, .r > .c4, .r > .c5, .r > .c6 {
+        padding:0 4px;
     }
 }
