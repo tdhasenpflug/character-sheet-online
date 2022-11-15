@@ -48,6 +48,13 @@ window.addEventListener('load', () => {
             window.location.search = qs
         }
 
+        var list = localStorage.getItem("cso_char_list") || ""
+        list = list.split(",").filter(n => n.length > 0)
+        if (list.indexOf(val.uid) < 0) {
+            list.push(val.uid)
+            localStorage.setItem('cso_char_list', list.join(','))
+        }
+
         saveRequired = false
         console.log("Complete.")
     }, 5000)
@@ -98,5 +105,28 @@ window.addEventListener('load', () => {
             this.style.height = this.scrollHeight + "px"
         }, false);
     }
+
+
+    const charList = document.getElementById("char_list")
+    var list = localStorage.getItem("cso_char_list") || ""
+    list = list.split(",").filter(n => n.length > 0)
+    for(let i = 0; i < list.length; i++) {
+        const char = localStorage.getItem(`cso_${list[i]}`)
+        if (char) {
+            const jch = JSON.parse(char)
+            var selected = ""
+            if (qs.has("cid") && qs.get("cid") == list[i]) {
+                selected = " selected"
+            }
+            charList.innerHTML += `<option value="${list[i]}" ${selected}>${jch['character_name'] || 'Unnamed Character'}</option>`
+        }
+    }
+    charList.addEventListener('change', () => {
+        if (charList.value) {
+            window.location = "/?cid=" + charList.value
+        } else {
+            window.location = "/"
+        }
+    })
 
 })
