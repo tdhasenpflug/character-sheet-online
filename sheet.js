@@ -20,6 +20,9 @@ window.addEventListener('load', () => {
                 if (el.length > 0) {
                     if (el[0].getAttribute("type") == "checkbox") {
                         el[0].setAttribute("checked", "checked")
+                    } else if (el[0].tagName.toLowerCase() == "textarea") {
+                        const lines = ch[name].split("\n")
+                        el[0].innerHTML = lines.join("\r\n")
                     } else {
                         el[0].setAttribute("value", ch[name])
                     }
@@ -53,6 +56,8 @@ window.addEventListener('load', () => {
 
     const penColor = document.getElementById("tool_pen_color")
     const writingFont = document.getElementById("tool_writing_font")
+    const spellPageToggle = document.getElementById("spell_page_toggle")
+    const spellPage = document.getElementById("spells-page")
 
     penColor.addEventListener('change', (ev) => {
         sheet.classList.remove("pc_blue")
@@ -72,5 +77,26 @@ window.addEventListener('load', () => {
             sheet.classList.add(writingFont.value)
         }
     })
+
+    spellPageToggle.addEventListener('click', () => {
+        if (spellPageToggle.getAttribute('checked') == "checked") {
+            spellPageToggle.removeAttribute("checked")
+            spellPage.style.display = "none"
+        } else {
+            spellPageToggle.setAttribute("checked", "checked")
+            spellPage.style.display = "block"
+        }
+    })
+
+    const tas = document.getElementsByTagName("textarea")
+    for(let i = 0; i < tas.length; i++) {
+        tas[i].setAttribute("style", "height:" + (tas[i].scrollHeight) + "px;overflow-y:hidden;");
+        tas[i].style.height = 0
+        tas[i].style.height = tas[i].scrollHeight + "px"
+        tas[i].addEventListener("input", function() {
+            this.style.height = 0
+            this.style.height = this.scrollHeight + "px"
+        }, false);
+    }
 
 })

@@ -117,7 +117,6 @@ input,select {
 }
 
 textarea.rsa {
-    resize: vertical !important;
 }
 
 input:hover, select:hover, textarea:hover {
@@ -142,6 +141,7 @@ input[type="number"] {
     padding:4px;
     font-size: 1.0em;
     width:3em;
+    text-align: center;
 }
 .skillsave input {
     margin:0 0 4px 0;
@@ -183,8 +183,8 @@ input[type="number"] {
 }
 
 @media print {
-    .printbreak {
-        page-break-before: always;
+    .nobreak {
+        page-break-inside: avoid;
     }
     #bar {
         display:none;
