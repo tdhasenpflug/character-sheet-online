@@ -117,6 +117,7 @@ input,select {
 }
 
 textarea.rsa {
+    /* resize: vertical !important; */
 }
 
 input:hover, select:hover, textarea:hover {
@@ -182,6 +183,11 @@ input[type="number"] {
     font-size:.8em;
 }
 
+.printview {
+    display:none;
+    font-size:75%;
+}
+
 @media print {
     .nobreak {
         page-break-inside: avoid;
@@ -192,14 +198,14 @@ input[type="number"] {
     label {
         font-size: .5em;
     }
-    input, select, textarea {
-        padding:2px;
+    input, select, textarea, .skillsave input {
+        display:none;
     }
-    textarea {
-        resize: none;
+    input[type=checkbox] {
+        display:inline-block;
     }
-    select {
-        appearance: none;
+    .printview {
+        display:inline-block;
     }
 
     main {
