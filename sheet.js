@@ -95,14 +95,18 @@ window.addEventListener('load', () => {
         }
     }
 
-    const qs = new URLSearchParams(window.location.search)
-    if (qs.has("cid")) {
-        const ch = getSave(qs.get('cid'))
-        uid_i.setAttribute('value', qs.get('cid'))
-        fillForm(ch)
-    } else {
-        uid_i.setAttribute('value', Date.now().toString(36))
+    function fillFromQueryString() {
+        sheet.reset()
+        const qs = new URLSearchParams(window.location.search)
+        if (qs.has("cid")) {
+            const ch = getSave(qs.get('cid'))
+            uid_i.setAttribute('value', qs.get('cid'))
+            fillForm(ch)
+        } else {
+            uid_i.setAttribute('value', Date.now().toString(36))
+        }
     }
+    fillFromQueryString()
 
     setInterval(() => {
         if (!saveRequired) return
@@ -159,6 +163,12 @@ window.addEventListener('load', () => {
     const charList = document.getElementById("char_list")
     var list = localStorage.getItem("cso_char_list") || ""
     list = list.split(",").filter(n => n.length > 0)
+
+    function addToCharList(val, selected, charName) {
+        charList.innerHTML += `<option value="${val}" ${selected}>${charName || 'Unnamed Character'}</option>`
+    }
+
+    const qs = new URLSearchParams(window.location.search)
     for(let i = 0; i < list.length; i++) {
         const char = localStorage.getItem(`cso_${list[i]}`)
         if (char) {
@@ -167,15 +177,13 @@ window.addEventListener('load', () => {
             if (qs.has("cid") && qs.get("cid") == list[i]) {
                 selected = " selected"
             }
-            charList.innerHTML += `<option value="${list[i]}" ${selected}>${jch['character_name'] || 'Unnamed Character'}</option>`
+            addToCharList(list[i], selected, jch['character_name'])
         }
     }
     charList.addEventListener('change', () => {
-        if (charList.value) {
-            window.location = "/?cid=" + charList.value
-        } else {
-            window.location = "/"
-        }
+        qs.set("cid", charList.value || "")
+        window.location.search = qs
+        fillFromQueryString()
     })
 
     const btnImport = document.getElementById("import")
@@ -216,6 +224,7 @@ window.addEventListener('load', () => {
 
         localStorage.removeItem(`cso_${uid_i.getAttribute('value')}`)
         window.location.search = ''
+        fillFromQueryString()
     })
 
 
