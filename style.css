@@ -4,13 +4,22 @@
     box-sizing: border-box;
 }
 
-@font-face {
-    font-family: NoteThis;
-    src: url(assets/note_this.ttf);
+input, textarea, select {
+    font-size:initial;
 }
 
+img, svg, picture, video {
+    max-width:100%;
+    width:auto;
+    max-height: 100%;
+    height:auto;
+    display:inline-block;
+}
+
+
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
     letter-spacing: 0.03em;
 }
 
@@ -72,7 +81,7 @@ input, select, textarea {
     padding:8px 16px;
     color:#4c4c4c;
     font-weight: 900;
-    font-family: NoteThis, serif;
+    font-family: 'Indie Flower', cursive;
     font-size:1.0em;
     border:0;
     background:transparent;
